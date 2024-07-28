@@ -85,4 +85,15 @@ describe('RegistrationForm', () => {
     expect(registrationForm.generalErrorContainer.style.display).toBe('block');
     expect(registrationForm.generalErrorContainer.style.color).toBe('red');
   });
+
+  test('displays success message and hides form', () => {
+    const email = 'test@example.com';
+    registrationForm.displaySuccessMessage(email);
+
+    expect(registrationForm.formElement.style.display).toBe('none');
+    const successForm = document.getElementById('postRegistrationForm');
+    expect(successForm).toBeTruthy();
+    expect(successForm.innerHTML).toContain(`Thank you for registering, ${email}.`);
+    expect(successForm.querySelector('#continueButton')).toBeTruthy();
+  });
 });
