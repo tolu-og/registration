@@ -125,4 +125,20 @@ describe('RegistrationForm', () => {
     expect(document.getElementById('postRegistrationForm')).toBeTruthy();
   });
 
+  test('handles form submission errors', async () => {
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve({ success: false, errors: { email: 'Invalid email' } }),
+      })
+    );
+
+    const event = { preventDefault: jest.fn() };
+    await registrationForm.handleSubmit(event);
+
+    expect(event.preventDefault).toHaveBeenCalled();
+    expect(global.fetch).toHaveBeenCalledWith('/submit', expect.any(Object));
+    const emailError = formElement.querySelector('#email + .error-message');
+    expect(emailError).toBeTruthy();
+    expect(emailError.textContent).toBe('Invalid email');
+  });
 });
