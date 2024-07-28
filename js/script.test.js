@@ -44,5 +44,20 @@ describe('RegistrationForm', () => {
     expect(registrationForm.formElement.querySelectorAll('input')[0].readOnly).toBe(false);
   });
 
+
+  test('clears error messages', () => {
+    const errorElement = document.createElement('div');
+    errorElement.className = 'error-message';
+    formElement.appendChild(errorElement);
+    registrationForm.generalErrorContainer.textContent = 'An error occurred';
+    registrationForm.generalErrorContainer.style.display = 'block';
+
+    registrationForm.clearErrorMessages();
+
+    expect(formElement.querySelectorAll('.error-message').length).toBe(0);
+    expect(registrationForm.generalErrorContainer.textContent).toBe('');
+    expect(registrationForm.generalErrorContainer.style.display).toBe('none');
+  });
+
   
 });
