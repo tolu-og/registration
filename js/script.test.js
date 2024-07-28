@@ -60,4 +60,21 @@ describe('RegistrationForm', () => {
   });
 
   
+  test('displays field-specific errors', () => {
+    const errors = {
+      firstName: 'First name is required',
+      email: 'Invalid email format'
+    };
+
+    registrationForm.displayErrors(errors);
+
+    const firstNameError = formElement.querySelector('#firstName + .error-message');
+    const emailError = formElement.querySelector('#email + .error-message');
+
+    expect(firstNameError).toBeTruthy();
+    expect(firstNameError.textContent).toBe('First name is required');
+    expect(emailError).toBeTruthy();
+    expect(emailError.textContent).toBe('Invalid email format');
+  });
+  
 });
