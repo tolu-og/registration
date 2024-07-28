@@ -96,7 +96,7 @@ describe('RegistrationForm', () => {
     expect(successForm.innerHTML).toContain(`Thank you for registering, ${email}.`);
     expect(successForm.querySelector('#continueButton')).toBeTruthy();
   });
-  
+
   test('shows original form after clicking continue', () => {
     registrationForm.displaySuccessMessage('test@example.com');
     const continueButton = document.getElementById('continueButton');
@@ -108,4 +108,21 @@ describe('RegistrationForm', () => {
     expect(registrationForm.submitButton.textContent).toBe('Register');
     expect(registrationForm.formElement.querySelectorAll('input')[0].readOnly).toBe(false);
   });
+
+  test('handles form submission', async () => {
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve({ success: true, email: 'test@example.com' }),
+      })
+    );
+
+    const event = { preventDefault: jest.fn() };
+    await registrationForm.handleSubmit(event);
+
+    expect(event.preventDefault).toHaveBeenCalled();
+    expect(global.fetch).toHaveBeenCalledWith('/submit', expect.any(Object));
+    expect(registrationForm.formElement.style.display).toBe('none');
+    expect(document.getElementById('postRegistrationForm')).toBeTruthy();
+  });
+
 });
