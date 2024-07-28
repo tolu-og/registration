@@ -32,7 +32,17 @@ describe('RegistrationForm', () => {
     expect(registrationForm.generalErrorContainer).toBeTruthy();
   });
 
- 
+  test('sets loading state correctly', () => {
+    registrationForm.setLoadingState(true);
+    expect(registrationForm.submitButton.disabled).toBe(true);
+    expect(registrationForm.submitButton.textContent).toBe('Submitting...');
+    expect(registrationForm.formElement.querySelectorAll('input')[0].readOnly).toBe(true);
+
+    registrationForm.setLoadingState(false);
+    expect(registrationForm.submitButton.disabled).toBe(false);
+    expect(registrationForm.submitButton.textContent).toBe('Register');
+    expect(registrationForm.formElement.querySelectorAll('input')[0].readOnly).toBe(false);
+  });
 
   
 });
