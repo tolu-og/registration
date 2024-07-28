@@ -59,7 +59,7 @@ describe('RegistrationForm', () => {
     expect(registrationForm.generalErrorContainer.style.display).toBe('none');
   });
 
-  
+
   test('displays field-specific errors', () => {
     const errors = {
       firstName: 'First name is required',
@@ -77,4 +77,12 @@ describe('RegistrationForm', () => {
     expect(emailError.textContent).toBe('Invalid email format');
   });
   
+  test('displays general error', () => {
+    const errorMessage = 'An error occurred. Please try again.';
+    registrationForm.displayGeneralError(errorMessage);
+
+    expect(registrationForm.generalErrorContainer.textContent).toBe(errorMessage);
+    expect(registrationForm.generalErrorContainer.style.display).toBe('block');
+    expect(registrationForm.generalErrorContainer.style.color).toBe('red');
+  });
 });
