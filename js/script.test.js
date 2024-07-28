@@ -96,4 +96,16 @@ describe('RegistrationForm', () => {
     expect(successForm.innerHTML).toContain(`Thank you for registering, ${email}.`);
     expect(successForm.querySelector('#continueButton')).toBeTruthy();
   });
+  
+  test('shows original form after clicking continue', () => {
+    registrationForm.displaySuccessMessage('test@example.com');
+    const continueButton = document.getElementById('continueButton');
+    continueButton.click();
+
+    expect(registrationForm.formElement.style.display).toBe('block');
+    expect(document.getElementById('postRegistrationForm')).toBeFalsy();
+    expect(registrationForm.submitButton.disabled).toBe(false);
+    expect(registrationForm.submitButton.textContent).toBe('Register');
+    expect(registrationForm.formElement.querySelectorAll('input')[0].readOnly).toBe(false);
+  });
 });
