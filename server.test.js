@@ -13,6 +13,10 @@ describe("Registration API", () => {
       expect(response.statusCode).toBe(200);
       expect(response.text).toContain("<!DOCTYPE html>");
     });
-  
+    
+    it("should respond with 404 for non-existent routes", async () => {
+        const response = await request(app).get("/non-existent-route");
+        expect(response.statusCode).toBe(404);
+      });
    
   });
