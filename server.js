@@ -66,10 +66,7 @@ function createApp() {
       const saltRounds = 10;
       const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-      // Log the hashed password (for debugging purposes only)
-      // console.log("Hashed password:", hashedPassword);
-
-      // Here you would typically save the user to your database
+      // Log the hashed password
       // using the hashedPassword instead of the plain text password
 
       const timestamp = new Date().toISOString();
