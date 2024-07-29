@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NHS Business Services - Registration</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header" role="banner">
+        <div class="header-content">
+            <img src="assets/logo.jpg" alt="NHS Business Services Logo" class="logo">
+        </div>
+    </header>
+
+    <main role="main">
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Welcome to NHS Business Services</h1>
+                </div>
+                
+                <div class="form-card">
+                    <h2 id="registration-form-heading">Registration Form</h2>
+                    <form id="registrationForm" aria-labelledby="registration-form-heading">
+                        <div id="generalError" class="error-message" role="alert" aria-live="assertive"></div>
+                        
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" required aria-required="true">
+                            <div id="firstNameError" class="error-message" role="alert"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required aria-required="true">
+                            <div id="lastNameError" class="error-message" role="alert"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required aria-required="true">
+                            <div id="emailError" class="error-message" role="alert"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required aria-required="true" 
+                                   aria-describedby="passwordRequirements">
+                            <div id="passwordError" class="error-message" role="alert"></div>
+                            <p id="passwordRequirements" class="form-hint">
+                                Password must be 8-255 characters long, include a number and a special character, 
+                                and not contain your name.
+                            </p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" required aria-required="true">
+                            <div id="confirmPasswordError" class="error-message" role="alert"></div>
+                        </div>
+
+                        <button type="submit">Register</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
