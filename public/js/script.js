@@ -44,7 +44,7 @@ class RegistrationForm {
         // Display success message if registration is successful
         this.displaySuccessMessage(result.email);
       } else {
-             // Display errors if registration fails
+        // Display errors if registration fails
         this.displayErrors(result.errors);
       }
     } catch (error) {
@@ -56,7 +56,7 @@ class RegistrationForm {
   }
 
   setLoadingState(isLoading) {
-            // Enable/disable form elements during submission
+    // Enable/disable form elements during submission
     this.submitButton.disabled = isLoading;
     this.submitButton.textContent = isLoading ? "Submitting..." : "Register";
     this.formElement
@@ -65,7 +65,7 @@ class RegistrationForm {
   }
 
   clearErrorMessages() {
-         // Remove all error messages
+    // Remove all error messages
     const errorElements = this.formElement.querySelectorAll(".error-message");
     errorElements.forEach((el) => el.remove());
     this.generalErrorContainer.textContent = "";
@@ -73,7 +73,7 @@ class RegistrationForm {
   }
 
   displayErrors(errors) {
-        // Display field-specific errors
+    // Display field-specific errors
     this.clearErrorMessages();
     for (const [field, message] of Object.entries(errors)) {
       const inputElement = this.formElement.querySelector(`#${field}`);
@@ -91,14 +91,13 @@ class RegistrationForm {
   }
 
   displayGeneralError(message) {
-        // Display general error message
+    // Display general error message
     this.generalErrorContainer.textContent = message;
     this.generalErrorContainer.style.display = "block";
     this.generalErrorContainer.style.color = "red";
   }
 
   displaySuccessMessage(email) {
-
     // Hide the registration form
     this.formElement.style.display = "none";
 

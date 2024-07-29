@@ -28,7 +28,8 @@ function createApp() {
     if (!lastName) errors.lastName = "Last name is required";
     if (!email) errors.email = "Email is required";
     if (!password) errors.password = "Password is required";
-    if (!confirmPassword) errors.confirmPassword = "Password confirmation is required";
+    if (!confirmPassword)
+      errors.confirmPassword = "Password confirmation is required";
 
     // Email validation
     if (email && !validator.isEmail(email)) {
@@ -42,9 +43,11 @@ function createApp() {
       } else if (!/\d/.test(password)) {
         errors.password = "Password must contain at least one number";
       } else if (!/[!@#$%^&*]/.test(password)) {
-        errors.password = "Password must contain at least one special character";
+        errors.password =
+          "Password must contain at least one special character";
       } else if (
-        (firstName && password.toLowerCase().includes(firstName.toLowerCase())) ||
+        (firstName &&
+          password.toLowerCase().includes(firstName.toLowerCase())) ||
         (lastName && password.toLowerCase().includes(lastName.toLowerCase()))
       ) {
         errors.password = "Password cannot contain your first or last name";
@@ -76,14 +79,19 @@ function createApp() {
         lastName,
         email,
         timestamp,
-        hashedPassword
+        hashedPassword,
       });
 
       // Respond with a success message including the email
       res.json({ success: true, email: email });
     } catch (error) {
       console.error("Error hashing password:", error);
-      res.status(500).json({ success: false, errors: { general: "An error occurred during registration" } });
+      res
+        .status(500)
+        .json({
+          success: false,
+          errors: { general: "An error occurred during registration" },
+        });
     }
   });
 
