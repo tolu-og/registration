@@ -18,6 +18,7 @@ function createApp() {
     res.sendFile(path.join(__dirname, "public", "index.html"));
   });
 
+  // Handle form submission
   app.post("/submit", async (req, res) => {
     const { firstName, lastName, email, password, confirmPassword } = req.body;
     const errors = {};
@@ -27,8 +28,7 @@ function createApp() {
     if (!lastName) errors.lastName = "Last name is required";
     if (!email) errors.email = "Email is required";
     if (!password) errors.password = "Password is required";
-    if (!confirmPassword)
-      errors.confirmPassword = "Password confirmation is required";
+    if (!confirmPassword) errors.confirmPassword = "Password confirmation is required";
 
     // Email validation
     if (email && !validator.isEmail(email)) {
@@ -42,11 +42,9 @@ function createApp() {
       } else if (!/\d/.test(password)) {
         errors.password = "Password must contain at least one number";
       } else if (!/[!@#$%^&*]/.test(password)) {
-        errors.password =
-          "Password must contain at least one special character";
+        errors.password = "Password must contain at least one special character";
       } else if (
-        (firstName &&
-          password.toLowerCase().includes(firstName.toLowerCase())) ||
+        (firstName && password.toLowerCase().includes(firstName.toLowerCase())) ||
         (lastName && password.toLowerCase().includes(lastName.toLowerCase()))
       ) {
         errors.password = "Password cannot contain your first or last name";
@@ -64,36 +62,37 @@ function createApp() {
     }
 
     try {
-        // Hash the password
-        const saltRounds = 10;
-        const hashedPassword = await bcrypt.hash(password, saltRounds);
-  
-        // Log the hashed password (for debugging purposes only)
-        // console.log("Hashed password:", hashedPassword);
-  
-        // Here you would typically save the user to your database
-        // using the hashedPassword instead of the plain text password
-  
-        const timestamp = new Date().toISOString();
-  
-        console.log("Form submission:", {
-          firstName,
-          lastName,
-          email,
-          timestamp,
-          hashedPassword
-        });
-  
-        // Respond with a success message including the email
-        res.json({ success: true, email: email });
-      } catch (error) {
-        console.error("Error hashing password:", error);
-        res.status(500).json({ success: false, errors: { general: "An error occurred during registration" } });
-      }
+      // Hash the password
+      const saltRounds = 10;
+      const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+      // Log the hashed password (for debugging purposes only)
+      // console.log("Hashed password:", hashedPassword);
+
+      // Here you would typically save the user to your database
+      // using the hashedPassword instead of the plain text password
+
+      const timestamp = new Date().toISOString();
+
+      console.log("Form submission:", {
+        firstName,
+        lastName,
+        email,
+        timestamp,
+        hashedPassword
+      });
+
+      // Respond with a success message including the email
+      res.json({ success: true, email: email });
+    } catch (error) {
+      console.error("Error hashing password:", error);
+      res.status(500).json({ success: false, errors: { general: "An error occurred during registration" } });
+    }
   });
 
   return app;
 }
+
 const app = createApp();
 
 // Only listen if this file is run directly
