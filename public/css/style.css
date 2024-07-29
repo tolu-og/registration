@@ -1,3 +1,181 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #eef2f7;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+.header {
+  background-color: #ffffff;
+  height: 80px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+.header .header-content {
+  display: flex;
+  align-items: center;
+}
+.header .logo {
+  max-width: 200px;
+  height: auto;
+}
+
+.hero {
+  background: url("../assets/hero.jpg") no-repeat center center;
+  background-size: cover;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: calc(100vh - 80px);
+  margin-top: 80px;
+  box-sizing: border-box;
+}
+.hero .hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+}
+.hero .form-hint {
+  font-style: italic;
+  font-size: 0.9em;
+  color: #555;
+  margin-bottom: 10px;
+}
+.hero .hero-text {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #ffffff;
+}
+.hero .hero-text h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  font-weight: bold;
+  line-height: 1.2;
+  color: #005eb8;
+}
+.hero .form-card {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+.hero .form-card h2 {
+  margin-bottom: 20px;
+  color: #005eb8;
+  text-align: center;
+}
+.hero .form-card form {
+  display: flex;
+  flex-direction: column;
+}
+.hero .form-card form label {
+  margin-bottom: 5px;
+  color: #555;
+  font-weight: bold;
+}
+.hero .form-card form input[type=text],
+.hero .form-card form input[type=email],
+.hero .form-card form input[type=password] {
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.hero .form-card form input[type=text]:focus,
+.hero .form-card form input[type=email]:focus,
+.hero .form-card form input[type=password]:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+  outline: none;
+}
+.hero .form-card form button {
+  padding: 12px;
+  background-color: #005eb8;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.hero .form-card form button:hover {
+  background-color: #007cba;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding: 60px 40px;
+  }
+  .hero .hero-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .hero .hero-text {
+    width: 50%;
+    text-align: left;
+    padding-right: 40px;
+    margin-bottom: 0;
+  }
+  .hero .hero-text h1 {
+    font-size: 2.2em;
+    margin-bottom: 40px;
+    margin-left: -20px;
+  }
+  .hero .form-card {
+    width: 40%;
+    padding: 30px;
+  }
+}
+@media (min-width: 1024px) {
+  .hero {
+    padding: 80px 60px;
+  }
+  .hero .hero-text h1 {
+    font-size: 2.5em;
+    margin-bottom: 60px;
+  }
+  .hero .form-card {
+    max-width: 400px;
+  }
+}
+@media (max-width: 480px) {
+  .hero {
+    padding: 30px 15px;
+  }
+  .hero .form-card {
+    padding: 15px;
+  }
+  .hero .form-card form input[type=text],
+  .hero .form-card form input[type=email],
+  .hero .form-card form input[type=password] {
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+  .hero .form-card form button {
+    padding: 10px;
+  }
+}
 
 /*# sourceMappingURL=style.css.map */

@@ -1,0 +1,236 @@
+// Variables for colors and dimensions
+$background-color: #eef2f7;
+$form-background-color: rgba(255, 255, 255, 0.8); // Semi-transparent background
+$text-color: #333;
+$label-color: #555;
+$button-color: #007bff;
+$button-hover-color: darken($button-color, 10%);
+$input-border-color: #ddd;
+$input-focus-border-color: #007bff;
+$box-shadow-color: rgba(0, 0, 0, 0.1);
+// $success-color: #28a745;
+$header-background-color: #ffffff;
+$header-height: 80px;
+$logo-width: 200px;
+$nhs-blue: #005eb8;
+$nhs-dark-blue: #007cba;
+$hover-dark-blue: #00548f;
+$white: #ffffff;
+$hero-background-image: url("../assets/hero.jpg");
+
+// Mixin for input styles
+@mixin input-styles {
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid $input-border-color;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  transition: border-color 0.3s, box-shadow 0.3s;
+
+  &:focus {
+    border-color: $input-focus-border-color;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    outline: none;
+  }
+}
+
+// Global styles
+body {
+  font-family: Arial, sans-serif;
+  background-color: $background-color;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Header styles
+.header {
+  background-color: $header-background-color;
+  height: $header-height;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+
+  .header-content {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo {
+    max-width: $logo-width;
+    height: auto;
+  }
+}
+
+// Hero Section Styles
+.hero {
+  background: $hero-background-image no-repeat center center;
+  background-size: cover;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: calc(100vh - $header-height);
+  margin-top: $header-height;
+  box-sizing: border-box;
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+  }
+
+  .form-hint {
+    font-style: italic;
+    font-size: 0.9em;
+    color: $label-color;
+    margin-bottom: 10px;
+  }
+
+  .hero-text {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+    color: $white;
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      font-weight: bold;
+      line-height: 1.2;
+      color: $nhs-blue;
+    }
+  }
+
+  .form-card {
+    background: rgba(255, 255, 255, 0.7); // More transparent background
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+
+    h2 {
+      margin-bottom: 20px;
+      color: $nhs-blue;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        margin-bottom: 5px;
+        color: $label-color;
+        font-weight: bold;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+        @include input-styles;
+      }
+
+      button {
+        padding: 12px;
+        background-color: $nhs-blue;
+        color: $white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: $nhs-dark-blue;
+        }
+      }
+    }
+  }
+}
+
+// Media Queries for responsiveness
+@media (min-width: 768px) {
+  .hero {
+    padding: 60px 40px;
+
+    .hero-content {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .hero-text {
+      width: 50%;
+      text-align: left;
+      padding-right: 40px;
+      margin-bottom: 0;
+
+      h1 {
+        font-size: 2.2em;
+        margin-bottom: 40px;
+        margin-left: -20px; // Move the h1 to the left
+      }
+    }
+
+    .form-card {
+      width: 40%;
+      padding: 30px;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    padding: 80px 60px;
+
+    .hero-text {
+      h1 {
+        font-size: 2.5em;
+        margin-bottom: 60px;
+      }
+    }
+
+    .form-card {
+      max-width: 400px;
+    }
+  }
+}
+
+// Additional styles for very small screens
+@media (max-width: 480px) {
+  .hero {
+    padding: 30px 15px;
+
+    .form-card {
+      padding: 15px;
+
+      form {
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+          padding: 8px;
+          margin-bottom: 8px;
+        }
+
+        button {
+          padding: 10px;
+        }
+      }
+    }
+  }
+}
